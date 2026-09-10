@@ -7,7 +7,7 @@
 
 #define M_PI 3.14159265358979323846
 char traco[] = "-------------------------------------------\n";
-float a, b;
+float a, b, c;
 int entrada;
 
 int main()
@@ -19,7 +19,7 @@ int main()
 
   while (true) {
 
-    printf("|==================================|\n");
+    printf("\n|==================================|\n");
     printf("|            CALCULADORA           |\n");
     printf("|==================================|\n");
     printf("| 1. SOMA                          |\n");
@@ -55,9 +55,24 @@ int main()
     printf("\nEscolha uma opção de 1 a 20\n");
 
     printf("Digite uma opcao: ");
-    scanf("%i", &entrada);
+    scanf("%d", &entrada);
 
-    if (entrada > 0 && entrada <= 20) {
+    if (scanf("%d", &entrada) != 1) {
+      int c;
+
+      while ((c = getchar()) != '\n' && c != EOF) {
+      }
+
+      printf("Entrada invalida.\n");
+    }
+
+    else if (entrada == 0) {
+      printf("Encerrando programa...\n");
+      printf("Ate logo...\n");
+      exit(0);
+    }
+
+    else if (entrada >= 1 && entrada <= 20) {
       if (entrada == 1) {
         float soma;
 
@@ -254,19 +269,106 @@ int main()
 
         printf("\n %s", traco);
         printf("====> Resultado: %.2f cm²\n", area_retangulo);
+      } else if (entrada == 14) {
+        float area_circulo;
+
+        printf("Raio: ");
+        scanf("%f", &a);
+
+        area_circulo = M_PI * (a * a);
+
+        printf("\n %s", traco);
+        printf("====> Resultado: %.2f cm²\n", area_circulo);
       }
 
-    }
+      else if (entrada == 15) {
+        float area_triangulo;
 
-    else if (entrada == 0) {
-      printf("Encerrando programa");
-      printf("Ate logo...");
-      exit(0);
+        printf("Base: ");
+        scanf("%f", &a);
+
+        printf("Altura: ");
+        scanf("%f", &b);
+
+        area_triangulo = (a * b) / 2;
+
+        printf("\n %s", traco);
+        printf("====> Resultado: %.2f\n", area_triangulo);
+      }
+
+      // TRIGRONOMETRIA
+      else if (entrada == 16) {
+        float hipotenusa;
+
+        printf("Valor A: ");
+        scanf("%f", &a);
+
+        printf("Valor B: ");
+        scanf("%f", &b);
+
+        hipotenusa = pow(a, 2) + pow(b, 2);
+
+        printf("\n %s", traco);
+        printf("====> Resultado: %.2f\n", hipotenusa);
+      }
+
+      else if (entrada == 17) {
+
+        float graus, seno, radiano;
+
+        printf("Seno: ");
+        scanf("%f", &graus);
+
+        radiano = graus * M_PI / 180;
+        seno = sin(radiano);
+
+        printf("\n %s", traco);
+        printf("====> Resultado: %.2f \n", seno);
+      }
+
+      else if (entrada == 18) {
+
+        float graus, cosseno, radiano;
+
+        printf("Cosseno: ");
+        scanf("%f", &graus);
+
+        radiano = graus * M_PI / 180;
+        cosseno = cos(radiano);
+
+        printf("\n %s", traco);
+        printf("====> Resultado: %.2f \n", cosseno);
+      }
+
+      else if (entrada == 19) {
+        float graus, tangente, radiano;
+
+        printf("Tangente: ");
+        scanf("%f", &graus);
+
+        radiano = graus * M_PI / 180;
+        tangente = tan(radiano);
+
+        printf("\n %s", traco);
+        printf("====> Resultado: %.2f \n", tangente);
+      }
+
+      else if (entrada == 20) {
+        float graus, radiano;
+
+        printf("Graus: ");
+        scanf("%f", &graus);
+
+        radiano = graus * M_PI / 180;
+
+        printf("\n %s", traco);
+        printf("====> Resultado: %.2f  radianos\n", radiano);
+      }
     }
 
     else {
-      printf("Entrada invalida");
+      printf("entrada invalida...");
     }
-    return 0;
   }
+  return 0;
 }
